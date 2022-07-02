@@ -1,9 +1,13 @@
-import React, { useRef } from "react";
-import '../styles/style.css';
+import React, { useEffect, useRef } from "react";
 
-const Form = ({ setTodoList }) => {
+const Form = ({ todoList, setTodoList }) => {
   const inputTitle = useRef(null);
   const inputDescription = useRef(null);
+
+  useEffect(() => {
+    window.localStorage.setItem('todos', JSON.stringify(todoList));
+    console.log(todoList);
+  }, [todoList]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,14 +16,15 @@ const Form = ({ setTodoList }) => {
     if (!title) {
       return;
     }
+
     inputTitle.current.value = '';
     inputDescription.current.value = '';
-    setTodoList((prevState) => {
-      prevState.push({
-        title, description, status: false, id: Date.now(),
-      });
-      return [...prevState];
+
+    const todos = [...todoList];
+    todos.push({
+      title, description, status: false, id: Date.now(),
     });
+    setTodoList(todos);
   }
 
   return (
@@ -28,7 +33,7 @@ const Form = ({ setTodoList }) => {
       <input ref={inputTitle} type="text" placeholder="Title" id="txtTodoItemTitle" data-testid="txtTodoItemTitle" className="form_input"/>
       <input ref={inputDescription} type="text" placeholder="Description" id="description-input" className="form_input"/>
       <div className="form_bottom">
-        <button id="btnAddTodo" data-testid="btnAddTodo" className="form_btn" onClick={(e) => handleSubmit(e)}>ADD</button>
+        <button id="btnAddTodo" data-testid="btnAddTodo" className="form_btn" onClick={handleSubmit}>ADD</button>
       </div>
     </form>
   )
