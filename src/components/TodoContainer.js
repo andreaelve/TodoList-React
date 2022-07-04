@@ -38,6 +38,4 @@ const TodoContainer = ({ todoList, setTodoList }) => {
   ) 
 }
 
-//SANDER ELSKER KJÆRESTE
-
 export default TodoContainer;
