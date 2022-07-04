@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import '../styles/style.css';
 
 const Form = ({ todoList, setTodoList }) => {
   const inputTitle = useRef(null);
@@ -6,7 +7,6 @@ const Form = ({ todoList, setTodoList }) => {
 
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(todoList));
-    console.log(todoList);
   }, [todoList]);
 
   const handleSubmit = (e) => {
