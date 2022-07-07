@@ -20,13 +20,13 @@ const TodoContainer = ({ todoList, setTodoList }) => {
     .sort((a, b) => (a.status === b.status)? 0 : a.status? -1 : 1)
     .map((el) => {
       return (
-        <Todo 
-          key={el.id} 
-          status={el.status} 
-          title={el.title} 
-          description={el.description} 
+        <Todo
+          key={el.id}
+          status={el.status}
+          title={el.title}
+          description={el.description}
           removeTodo={() => removeTodo(el)}
-          toggleStatus={() => toggleStatus(el)} 
+          toggleStatus={() => toggleStatus(el)}
         />)
     })
 
